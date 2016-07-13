@@ -149,7 +149,7 @@ function getUserData( myUser ){
         } else {}
           myUser.displayName = data["display_name"];
           myUser.createdDate = data["created_at"];
-          myUser.channel_url = "https:///www.twitch.tv/users/" + data["name"];
+          myUser.channel_url = "https:///www.twitch.tv/" + data["name"];
           if (data.hasOwnProperty("bio")){
             myUser.bio = data["bio"];
           }
