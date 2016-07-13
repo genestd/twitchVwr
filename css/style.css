@@ -27,6 +27,7 @@ body { margin: 0; }
     -webkit-align-items: center;
     -webkit-box-align: center;
     align-items: center;
+    flex-shrink: 0;
   }
 
 /**
@@ -58,6 +59,7 @@ body { margin: 0; }
     -webkit-align-items: center;
     -webkit-box-align: center;
     align-items: center;
+    flex-shring: 0;
 }
 i{
   padding:4px;
