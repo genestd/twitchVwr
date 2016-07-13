@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitcher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app">
+  <div class="header">
+        <img src="twitch_logo.png"/>
+        <h3 class="title">Twitch Viewer</h3>
+        <img src="twitch_logo2.png"/>
+  </div>
+  <div class="main">
+    <div class="jumbotron" id="status">
+      <strong>Channel Status:</strong>
+      <button class="btn btn-success btn-circle" id="onlineCount"></button>
+      <button class="btn btn-warning btn-circle" id="offlineCount"></button>
+      <button class="btn btn-danger btn-circle" id="deletedCount"></button>
+      <strong>=</strong>
+      <button class="btn btn-info btn-circle" id="totalCount"></button>
+      <div class="input-group add-on">
+        <input class="form-control" placeholder="Search channels" name="srchChannel" id="channelSearch" type="text">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit" id="srchSubmit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-group" id="users">
+    </div>  <!-- end panel group "users" -->
+  </div>
+  <div class="footer">&copy; 2016 David Genest <i class="fa fa-envelope"></i> <i class="fa fa-linkedin"></i> <i class="fa fa-codepen"></i> <i class="fa fa-github"></i>
+  </div>
+</body>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+<script src="js/index.js"></script>
+</html>
