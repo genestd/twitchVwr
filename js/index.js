@@ -6,7 +6,7 @@ function Channel(newname){
   this.logo="";
   this.bio="";
   this.streamGame="";
-  this.streamURL="";
+  this.streamPreview="";
   this.channel_status="";
   this.createdDate="";
   this.channel_url="";
@@ -30,8 +30,8 @@ Channel.prototype.getbio = function(){
 Channel.prototype.getStreamGame = function(){
     return this.streamGame;
   };
-Channel.prototype.getStreamURL = function(){
-  return this.streamURL;
+Channel.prototype.getStreamPreview = function(){
+  return this.streamPreview;
  };
 Channel.prototype.getChannelStatus = function(){
     return this.channel_status;
@@ -136,7 +136,7 @@ function getUserData( myUser ){
         dataType: "jsonp"
       })
       .done( function(data){
-        //console.log(JSON.stringify(data));
+        console.log(JSON.stringify(data));
         if (data["error"] == "Not Found"){
           for( i=0; i<users.length; i++){
             if (myUser.getName() == users[i].getName() ){
@@ -149,7 +149,7 @@ function getUserData( myUser ){
         } else {}
           myUser.displayName = data["display_name"];
           myUser.createdDate = data["created_at"];
-          myUser.channel_url = data["_links"]["self"];
+          myUser.channel_url = "https:///www.twitch.tv/users/" + data["name"];
           if (data.hasOwnProperty("bio")){
             myUser.bio = data["bio"];
           }
@@ -188,7 +188,7 @@ function getStream(myUser){
               myUser.status="online";
               console.log(stream["stream"]["game"]);
               myUser.streamGame = stream["stream"]["game"];
-              myUser.streamURL = stream["stream"]["_links"]["self"];
+              myUser.streamPreview = stream["stream"]["preview"]["small"];
           }
         }
       })
@@ -244,7 +244,8 @@ function createUserPanel(user){
   if (user.getStatus() == "online"){
     body=true;
     myHTML += '<div id="' + user.getDisplayName() +'" class="panel-collapse collapse">';
-    myHTML += '<div class="panel-body"><a href="' + user.getStreamURL() + '" target="_blank"><strong>Now Streaming: ' + user.getStreamGame() + '</strong></a></div>';
+    myHTML += '<div class="panel-body"><a href="' + user.getChannelURL() + '" target="_blank"><strong>Now Streaming: ' + user.getStreamGame() + '</strong>';
+    myHTML += '<img class="img img-responsive" src="' + user.getStreamPreview() + '"</a></div>';
   }
 
   if ( user.getbio() !== null && user.getbio().length > 0){
