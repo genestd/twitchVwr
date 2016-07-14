@@ -184,11 +184,12 @@ function getStream(myUser){
         } else {
           if (stream["stream"] == null){
             myUser.status = "offline";
+            myUser.streamGame = "<em>Offline</em>"
           } else {
               myUser.status="online";
               console.log(stream["stream"]["game"]);
               myUser.streamGame = stream["stream"]["game"];
-              myUser.streamPreview = stream["stream"]["preview"]["small"];
+              myUser.streamPreview = stream["stream"]["preview"]["medium"];
           }
         }
       })
@@ -218,7 +219,7 @@ function displayUsers(){
 function createUserPanel(user){
   var body=false;
   myHTML = '<div class="panel panel-default" id="panel-' + user.getName() + '"><div class="panel-heading">';
-  myHTML += '<h4 class="panel-title"><button class="btn btn-circle ';
+  myHTML += '<h4 class="panel-title"><a data-toggle="collapse" href="#' + user.getDisplayName() + '"><button class="btn btn-circle ';
   switch( user.getStatus() ){
     case "online":
       myHTML += "btn-success";
@@ -230,8 +231,8 @@ function createUserPanel(user){
       myHTML += "btn-danger";
       break;
   }
-  myHTML += '" id="btn-' + user.getName() + '"><a data-toggle="collapse" href="#' + user.getDisplayName();
-  myHTML += '"><i class="fa fa-plus" id="expand"></i></button></a><i class="fa fa-close fa-2x fa-pull-right" id="close"></i>';
+  myHTML += '" id="btn-' + user.getName() + '">';
+  myHTML += '<i class="fa fa-plus" id="expand"></i></button></a><i class="fa fa-close fa-2x fa-pull-right" id="close"></i>';
   //myHTML += '</a>';
   myHTML += '<a href="' + user.getChannelURL() + '" target="_blank">';
   if ( user.getLogo() !== null){
@@ -245,7 +246,11 @@ function createUserPanel(user){
     body=true;
     myHTML += '<div id="' + user.getDisplayName() +'" class="panel-collapse collapse">';
     myHTML += '<div class="panel-body"><a href="' + user.getChannelURL() + '" target="_blank"><strong>Now Streaming: ' + user.getStreamGame() + '</strong>';
-    myHTML += '<img class="img img-responsive" src="' + user.getStreamPreview() + '"</a></div>';
+    myHTML += '<img class="img img-responsive pull-right" src="' + user.getStreamPreview() + '"/>"</a></div>';
+  } else if (user.getStatus() == "offline"){
+    body=true;
+    myHTML += '<div id="' + user.getDisplayName() +'" class="panel-collapse collapse">';
+    myHTML += '<div class="panel-body"><strong>Now Streaming: </strong>' + user.getStreamGame() + '</div>';    
   }
 
   if ( user.getbio() !== null && user.getbio().length > 0){
@@ -264,7 +269,7 @@ function createUserPanel(user){
     myHTML+= '</div>';  //ends panel collapse
   }
   myHTML += '</div>'; //ends panel div
-
+  console.log(myHTML);
   return myHTML;
 }
 
@@ -317,13 +322,22 @@ function filterUsers( filter ){
 <div class="panel panel-default" id="panel-ESL_SC2">
   <div class="panel-heading">
     <h4 class="panel-title">
-      <button class="btn btn-circle-sm" id="btn-ESL_SC2"></button>
-      <i class="fa fa-close fa-2x fa-pull-right" id="close"></i>
-      <a data-toggle="collapse" href="#ESL_SC2"><img class="logo" src="https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg"/> ESL_SC2 </a>
+    <a data-toggle="collapse" href="#ESL_SC2">
+      <button class="btn btn-circle btn-success" id="btn-ESL_SC2">
+        <i class="fa fa-plus" id="expand">
+        </i>
+      </button>
+    </a>
+    <i class="fa fa-close fa-2x fa-pull-right" id="close">
+    </i>
+    <a href="https:///www.twitch.tv/esl_sc2" target="_blank">
+      <img class="logo" src="https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg"/> ESL_SC2
+    </a>
     </h4>
   </div>
   <div id="ESL_SC2" class="panel-collapse collapse">
     <div class="panel-body">
-      <strong>Now Streaming: StarCraft II</strong>
-    </div<div class="panel-footer"><b>Bio</b>: For standings, schedule, and results, visit http://www.intelextrememasters.com/</div>
+      <a href="https:///www.twitch.tv/esl_sc2" target="_blank">
+        <strong>Now Streaming: StarCraft II</strong>
+        <img class="img img-responsive pull-right" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_esl_sc2-320x180.jpg/>"</a></div><div class="panel-body"><b>Bio</b>: For standings, schedule, and results, visit http://www.intelextrememasters.com/</div><div class="panel-footer">Streaming since 2012-05-02</div></div></div>
 */
