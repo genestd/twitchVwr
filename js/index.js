@@ -246,11 +246,11 @@ function createUserPanel(user){
     body=true;
     myHTML += '<div id="' + user.getDisplayName() +'" class="panel-collapse collapse">';
     myHTML += '<div class="panel-body"><a href="' + user.getChannelURL() + '" target="_blank"><strong>Now Streaming: ' + user.getStreamGame() + '</strong>';
-    myHTML += '<img class="img img-responsive pull-right" src="' + user.getStreamPreview() + '"/>"</a></div>';
+    myHTML += '<img class="img img-responsive" src="' + user.getStreamPreview() + '"/>"</a></div>';
   } else if (user.getStatus() == "offline"){
     body=true;
     myHTML += '<div id="' + user.getDisplayName() +'" class="panel-collapse collapse">';
-    myHTML += '<div class="panel-body"><strong>Now Streaming: </strong>' + user.getStreamGame() + '</div>';    
+    myHTML += '<div class="panel-body"><strong>Now Streaming: </strong>' + user.getStreamGame() + '</div>';
   }
 
   if ( user.getbio() !== null && user.getbio().length > 0){
